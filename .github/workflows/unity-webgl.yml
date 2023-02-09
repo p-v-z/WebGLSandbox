@@ -76,13 +76,13 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           name: "github-pages"
-          path: "./build"
+          path: "./build/WebGL"
 
       # List directory contents
       - name: List directory contents
         run: |
           echo "Build directory contents:"
-          ls build
+          ls build/WebGL
 
       # Deploy to Pages
       - name: Deploy to GitHub Pages
