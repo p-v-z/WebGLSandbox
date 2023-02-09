@@ -75,7 +75,14 @@ jobs:
       - name: Upload Page artifact
         uses: actions/upload-pages-artifact@v1
         with:
+          name: "github-pages"
           path: "./build"
+
+      # List directory contents
+      - name: List directory contents
+        run: |
+          echo "Build directory contents:"
+          ls build
 
       # Deploy to Pages
       - name: Deploy to GitHub Pages
