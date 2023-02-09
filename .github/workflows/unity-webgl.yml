@@ -22,6 +22,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       # Startup
       - name: Create annotation for build error
@@ -57,25 +60,16 @@ jobs:
           name: Build
           path: build
 
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-		needs: build
-    steps:
-      # Checkout
-      - name: Checkout
-        uses: actions/checkout@v3
       # Setup and configure Pages
       - name: Setup Pages
         uses: actions/configure-pages@v3
+
       # Upload entire repository
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           path: "./Build"
+					
       # Deploy to Pages
       - name: Deploy to GitHub Pages
         id: deployment
