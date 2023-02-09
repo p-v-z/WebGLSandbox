@@ -75,7 +75,7 @@ jobs:
       - name: Upload Page artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: "$GITHUB_WORKSPACE/Builds"
+          path: "./build"
 
       # Deploy to Pages
       - name: Deploy to GitHub Pages
